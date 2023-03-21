@@ -44,6 +44,9 @@ class GoaBooking
         global $wpdb;
         define('GOA_BOOKING_TABLE_AGENTS', $wpdb->prefix . 'goa_booking_agents');
         define('GOA_BOOKING_TABLE_CUSTOMERS', $wpdb->prefix . 'goa_booking_customers');
+
+        // Slugs
+        define('GOA_BOOKING_SLUG_WP_ADMIN_PAGE', 'goa_booking');
     }
 
     public function includes()
@@ -61,13 +64,15 @@ class GoaBooking
     {
         register_activation_hook(__FILE__, [$this, 'on_activate']);
         register_deactivation_hook(__FILE__, [$this, 'on_deactivate']);
+        add_action('admin_menu', [$this, 'plugin_page_link']);
+        add_action('admin_enqueue_scripts', [$this, 'plugin_page_assets']);
     }
 
     public function on_activate()
     {
         // Debug message
         GoaBookingDebugHelper::log_debug('[SYSTEM] Plugin Activated');
-        
+
         flush_rewrite_rules();
         GoaBookingDatabaseHelper::run_setup();
     }
@@ -76,6 +81,34 @@ class GoaBooking
     {
         // Debug message
         GoaBookingDebugHelper::log_debug('[SYSTEM] Plugin Deactivated');
+    }
+
+    public function plugin_page_link()
+    {
+        add_menu_page(
+            esc_html__('GoA Booking Admin', 'goa-booking'),
+            esc_html__('GoA Booking', 'goa-booking'),
+            'manage_options',
+            GOA_BOOKING_SLUG_WP_ADMIN_PAGE,
+            [$this, 'plugin_page_template'],
+            'dashicons-admin-plugins',
+            100
+        );
+    }
+
+    public function plugin_page_template()
+    {
+        require_once GOA_BOOKING_PLUGIN_PATH . 'admin/index.php';
+    }
+
+    public function plugin_page_assets()
+    {
+        $screen = get_current_screen();
+
+        if ($screen->id === 'toplevel_page_' . GOA_BOOKING_SLUG_WP_ADMIN_PAGE) {
+            // Enqueue styles
+            wp_enqueue_style('goa-booking-admin', GOA_BOOKING_PLUGIN_URL . 'admin/assets/css/style.css');
+        }
     }
 }
 
