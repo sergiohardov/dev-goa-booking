@@ -55,45 +55,12 @@ if (!defined('ABSPATH')) die;
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Name</td>
-                            <td>Last</td>
-                            <td>example</td>
-                            <td>+38093123142</td>
-                            <td>examplelogiin</td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteAgent">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Name</td>
-                            <td>Last</td>
-                            <td>example</td>
-                            <td>+38093123142</td>
-                            <td>examplelogiin</td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteAgent">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Name</td>
-                            <td>Last</td>
-                            <td>example</td>
-                            <td>+38093123142</td>
-                            <td>examplelogiin</td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteAgent">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                        $agents = goa_booking_get_agents();
+                        foreach ($agents as $agent) {
+                            echo goa_booking_template_part('agents', $agent);
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

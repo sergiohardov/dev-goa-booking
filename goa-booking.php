@@ -56,8 +56,15 @@ class GoaBooking
         include_once(GOA_BOOKING_PLUGIN_PATH . 'inc/helpers/database_helper.php');
 
         // MODELS
+        include_once(GOA_BOOKING_PLUGIN_PATH . 'inc/model/agents_model.php');
 
         // CONTROLLERS
+        include_once(GOA_BOOKING_PLUGIN_PATH . 'inc/controller/agents_controller.php');
+
+        // VIEWS
+
+        // FUNCTIONS
+        include_once(GOA_BOOKING_PLUGIN_PATH . 'functions.php');
     }
 
     public function init_hooks()
