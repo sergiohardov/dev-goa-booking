@@ -27,7 +27,7 @@ class GoaBooking
         $this->includes();
         $this->init_hooks();
     }
-    
+
     public function defines()
     {
         // Plugin PATH
@@ -42,13 +42,15 @@ class GoaBooking
 
         // Database Tables
         global $wpdb;
-        define('GOA_BOOKING_TABLE_AGENTS', $wpdb->prefix . 'goa_booking_table_agents');
-        define('GOA_BOOKING_TABLE_CUSTOMERS', $wpdb->prefix . 'goa_booking_table_customers');
+        define('GOA_BOOKING_TABLE_AGENTS', $wpdb->prefix . 'goa_booking_agents');
+        define('GOA_BOOKING_TABLE_CUSTOMERS', $wpdb->prefix . 'goa_booking_customers');
     }
 
     public function includes()
     {
         // HELPERS
+        include_once(GOA_BOOKING_PLUGIN_PATH . 'inc/helpers/debug_helper.php');
+        include_once(GOA_BOOKING_PLUGIN_PATH . 'inc/helpers/database_helper.php');
 
         // MODELS
 
@@ -57,17 +59,23 @@ class GoaBooking
 
     public function init_hooks()
     {
-        register_activation_hook('', [$this, 'on_activate']);
-        register_deactivation_hook('', [$this, 'on_deactivate']);
+        register_activation_hook(__FILE__, [$this, 'on_activate']);
+        register_deactivation_hook(__FILE__, [$this, 'on_deactivate']);
     }
 
     public function on_activate()
     {
+        // Debug message
+        GoaBookingDebugHelper::log_debug('[SYSTEM] Plugin Activated');
+        
         flush_rewrite_rules();
+        GoaBookingDatabaseHelper::run_setup();
     }
 
     public function on_deactivate()
     {
+        // Debug message
+        GoaBookingDebugHelper::log_debug('[SYSTEM] Plugin Deactivated');
     }
 }
 
