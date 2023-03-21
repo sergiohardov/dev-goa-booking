@@ -15,7 +15,7 @@ class GoaBookingDatabaseHelper
     /**
      * Create new tables in database
      *
-     * @return void
+     * @var request contains result for request dbDelta
      */
     public static function install_database()
     {

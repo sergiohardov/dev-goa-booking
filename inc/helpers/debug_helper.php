@@ -9,6 +9,12 @@ class GoaBookingDebugHelper
         echo '</pre>';
     }
 
+    /**
+     * Write your result or your message in debug_helper.log
+     *
+     * @param string|array $data
+     * @return void
+     */
     static function log_debug($data)
     {
         $timestamp = date("Y-m-d H:i:s");
