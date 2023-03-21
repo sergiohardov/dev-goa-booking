@@ -13,3 +13,62 @@
  */
 
 if (!defined('ABSPATH')) die;
+
+/**
+ * GoaBooking
+ * 
+ * Main plugin class init.
+ */
+class GoaBooking
+{
+    public function __construct()
+    {
+        $this->defines();
+        $this->includes();
+        $this->init_hooks();
+    }
+    
+    public function defines()
+    {
+        // Plugin PATH
+        define('GOA_BOOKING_PLUGIN_PATH', plugin_dir_path(__FILE__));
+
+        // Plugin URL
+        define('GOA_BOOKING_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+        // Roles
+        define('GOA_BOOKING_WP_AGENT_ROLE', 'goa_booking_role_agent');
+        define('GOA_BOOKING_WP_CUSTOMER_ROLE', 'goa_booking_role_customer');
+
+        // Database Tables
+        global $wpdb;
+        define('GOA_BOOKING_TABLE_AGENTS', $wpdb->prefix . 'goa_booking_table_agents');
+        define('GOA_BOOKING_TABLE_CUSTOMERS', $wpdb->prefix . 'goa_booking_table_customers');
+    }
+
+    public function includes()
+    {
+        // HELPERS
+
+        // MODELS
+
+        // CONTROLLERS
+    }
+
+    public function init_hooks()
+    {
+        register_activation_hook('', [$this, 'on_activate']);
+        register_deactivation_hook('', [$this, 'on_deactivate']);
+    }
+
+    public function on_activate()
+    {
+        flush_rewrite_rules();
+    }
+
+    public function on_deactivate()
+    {
+    }
+}
+
+$GoaBooking = new GoaBooking();
