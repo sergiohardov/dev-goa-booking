@@ -31,18 +31,19 @@ if (!defined('ABSPATH')) die;
             </div>
         </div>
 
-        <div class="row">
-            <div class="col d-flex justify-content-between">
+
+
+        <div class="row mt-3">
+
+            <div class="col-12 d-flex justify-content-between">
                 <h2 class="text-center">Agents</h2>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddAgent">
                     <i class="bi bi-plus"></i><span><?php _e('Add Agent', 'goa-booking'); ?></span>
                 </button>
             </div>
-        </div>
 
-        <div class="row mt-3">
-            <div class="col">
-                <table id="goa_booking_add_agent_table" class="table table-striped table-sm align-middle">
+            <div class="col-12">
+                <table class="agent-table table table-striped table-sm align-middle">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -139,9 +140,10 @@ if (!defined('ABSPATH')) die;
                     </form>
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php _e('Close', 'goa-booking'); ?></button>
-                    <button type="button" class="btn btn-primary"><span><?php _e('Add', 'goa-booking'); ?></span></button>
+                    <button type="button" class="btn btn-primary agent_add_btn"><span><?php _e('Add', 'goa-booking'); ?></span></button>
                 </div>
             </div>
         </div>
@@ -161,8 +163,8 @@ if (!defined('ABSPATH')) die;
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php _e('Close', 'goa-booking'); ?></button>
-                    <button type="button" class="btn btn-danger"><span><?php _e('Delete', 'goa-booking'); ?></span></button>
+                    <button type="button" class="agent_delete_btn_discard btn btn-secondary" data-bs-dismiss="modal"><?php _e('Close', 'goa-booking'); ?></button>
+                    <button type="button" class="agent_delete_btn_confirm btn btn-danger"><span><?php _e('Delete', 'goa-booking'); ?></span></button>
                 </div>
             </div>
         </div>

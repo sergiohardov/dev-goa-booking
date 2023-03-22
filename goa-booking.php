@@ -120,6 +120,7 @@ class GoaBooking
 
             // Enqueue scripts
             wp_enqueue_script('goa-booking-bootstrap', GOA_BOOKING_PLUGIN_URL . 'libs/bootstrap/bootstrap.min.js', '', '', true);
+            wp_enqueue_script('goa-booking-script', GOA_BOOKING_PLUGIN_URL . 'admin/assets/js/script.js', '', '', true);
         }
     }
 }
